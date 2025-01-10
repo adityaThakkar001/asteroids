@@ -1,4 +1,3 @@
-# asteroid.py
 import pygame
 import random
 from circleshape import CircleShape
