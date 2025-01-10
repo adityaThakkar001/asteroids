@@ -2,7 +2,7 @@
 A classic Asteroids arcade game using Pygame. Navigate through space, shoot asteroids, and try to survive as long as possible!
 
 ## **Gameplay**
-![Gameplay](assets\gameplay.png)
+![Gameplay](assets/gameplay.png)
 
 ## **Prerequisites**
 Python 3.11 or higher
