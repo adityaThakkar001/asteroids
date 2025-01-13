@@ -12,6 +12,9 @@ class Player(CircleShape):
         self.original_image = pygame.transform.scale(self.original_image, (radius * 3.5, radius * 3.5))
         self.image = self.original_image
         self.rect = self.image.get_rect(center=(x, y))
+        self.velocity = pygame.Vector2(0, 0)
+        self.drag = 0.99
+        self.max_speed = 250
 
     def draw(self, screen):
         self.image = pygame.transform.rotate(self.original_image, -self.rotation)
@@ -36,10 +39,15 @@ class Player(CircleShape):
             if self.timer <= 0:
                 self.timer = PLAYER_SHOOT_COOLDOWN
                 self.shoot(self.position)
+        self.velocity *= self.drag
+        self.position += self.velocity * dt
+        self.position.x = self.position.x % SCREEN_WIDTH
+        self.position.y = self.position.y % SCREEN_HEIGHT
         self.rect.center = self.position
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        self.velocity += forward * PLAYER_SPEED * dt
         self.position += forward * PLAYER_SPEED * dt
 
     def shoot(self, position):
